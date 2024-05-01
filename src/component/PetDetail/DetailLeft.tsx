@@ -1,5 +1,5 @@
 import image1 from "./assets/Item → pets.jpg.png";
-import img1 from "./assets/pets1.png";
+// import img1 from "./assets/pets1.png";
 import img2 from "./assets/pet2.png";
 import img3 from "./assets/pet3.png";
 import location from "./assets/location.png";
@@ -11,7 +11,7 @@ import "react-image-gallery/styles/css/image-gallery.css";
 const images = [
   {
     original: image1,
-    thumbnail: img1,
+    // thumbnail: img1,
   },
   {
     original: image1,

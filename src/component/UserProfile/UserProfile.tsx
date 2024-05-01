@@ -28,18 +28,7 @@ const UserProfile = () => {
     <div className="bg-userprofile">
       <Navbar />
       <LogoHeader />
-      <div>
-        {!isLogin && (
-          <Button
-            variant={{ theme: "dark", thickness: "thick" }}
-            className="px-4 py-2 lg:px-10 lg:py-4 "
-            onClick={redirectToLogin}
-          >
-            Login
-          </Button>
-        )}
-        {/* {isLogin && <UserActionDropDown />} */}
-      </div>
+
       <div className="container mx-auto md:px-6 px-4 relative mt-10">
         <ProfileSection />
       </div>

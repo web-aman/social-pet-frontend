@@ -18,7 +18,7 @@ const QuickLinks = () => {
               />
               <p className="text-[16px] font-semibold text-[#555555]">Home</p>
             </Nav.Link>
-            <Nav.Link href="/" className="flex mb-6 text-[16px] leading-6">
+            <Nav.Link href="/about" className="flex mb-6 text-[16px] leading-6">
               <img
                 src={arrow}
                 alt="arrow"
@@ -29,7 +29,10 @@ const QuickLinks = () => {
                 About Us
               </p>
             </Nav.Link>
-            <Nav.Link href="/form" className="flex mb-6 text-[16px] leading-6">
+            <Nav.Link
+              href="/contact"
+              className="flex mb-6 text-[16px] leading-6"
+            >
               <img
                 src={arrow}
                 alt="arrow"
