@@ -45,12 +45,6 @@ const LogoHeader = () => {
     navigate("/");
   };
 
-  const handleLogout = () => {
-    localStorage.removeItem("token");
-    setIsLogin(false);
-    redirectToHomepage();
-  };
-
   return (
     <>
       <div
@@ -133,17 +127,6 @@ const LogoHeader = () => {
               <Link to={"/contact"}>
                 <Nav.Item className="px-4 pb-10">Contact</Nav.Item>
               </Link>
-
-              {!user && (
-                <Link to={"/signup"}>
-                  <Nav.Item className="px-4 pb-10">Signup</Nav.Item>
-                </Link>
-              )}
-              {user && (
-                <Link to="/login">
-                  <Nav.Item className="px-4 pb-6">Logout</Nav.Item>
-                </Link>
-              )}
             </Nav>
             <label htmlFor="check" className="close-menu">
               X

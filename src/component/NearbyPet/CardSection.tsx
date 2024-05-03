@@ -1,4 +1,4 @@
-import search from "./assets/search.png";
+// import search from "./assets/search.png";
 import image1 from "./assets/div.dt-sc-team-thumb.png";
 import image2 from "./assets/team-thumb2.png";
 import image3 from "./assets/sitter3.jpg.png";

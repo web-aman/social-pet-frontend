@@ -1,422 +1,4 @@
-// import { useState } from "react";
-// import {
-//   TETabs,
-//   TETabsContent,
-//   TETabsItem,
-//   TETabsPane,
-// } from "tw-elements-react";
-// import profile from "./assets/profile.svg";
-// import client_image from "./assets/jesica.png";
-// import Mask1 from "./assets/Mask1.svg";
-// import img1 from "./assets/pet1.png";
-// import img2 from "./assets/pet2.png";
-// import img3 from "./assets/pet3.png";
-// import img4 from "./assets/pet4.png";
-// import img5 from "./assets/pet5.png";
-// import img6 from "./assets/pet6.png";
-// import last from "./assets/last.png";
-// import { UploadButton } from "react-uploader";
-// import { Uploader } from "uploader";
-// import paw from "./assets/paw.svg";
-
-// import home from "../NearbyPet/assets/Icon.png";
-// import hearticon from "../NearbyPet/assets/heart.png";
-// import image1 from "../NearbyPet/assets/div.dt-sc-team-thumb.png";
-// import image2 from "../NearbyPet/assets/team-thumb2.png";
-// import image3 from "../NearbyPet/assets/sitter3.jpg.png";
-// import pawimage from "../NearbyPet/assets/footprint-shape_svgrepo.com.png";
-// import useChangePassword from "../../http/ChangePassword";
-// import { IoEyeOffOutline } from "react-icons/io5";
-// import { IoEyeOutline } from "react-icons/io5";
-
-// import Logoutmodal from "../modals/Logoutmodal";
-// import { useNavigate } from "react-router-dom";
-// import ReactModal from "react-modal";
-
-// const data = [
-//   {
-//     img: img1,
-//   },
-//   {
-//     img: img2,
-//   },
-//   {
-//     img: img3,
-//   },
-//   {
-//     img: img4,
-//   },
-//   {
-//     img: img5,
-//   },
-//   {
-//     img: img6,
-//   },
-// ];
-
-// const data2 = [
-//   {
-//     image: image1,
-//     title: "Stephen King",
-//     img2: home,
-//     country: "Cambridge ,UK",
-//     age: "2+ Yrs",
-//     bread: "Bulldog",
-//     heart: hearticon,
-//   },
-//   {
-//     image: image2,
-//     title: "Stephen King",
-//     img2: home,
-//     country: "Cambridge ,UK",
-//     age: "2+ Yrs",
-//     bread: "Bulldog",
-//     heart: hearticon,
-//   },
-//   {
-//     image: image3,
-//     title: "Stephen King",
-//     img2: home,
-//     country: "Cambridge ,UK",
-//     age: "2+ Yrs",
-//     bread: "Bulldog",
-//     heart: hearticon,
-//   },
-// ];
-
-// const ProfileSection = () => {
-//   const [verticalActive, setVerticalActive] = useState("tab1");
-
-//   const handleVerticalClick = (value: string) => {
-//     if (value === verticalActive) {
-//       return;
-//     }
-//     setVerticalActive(value);
-//   };
-
-//   const uploader = Uploader({
-//     apiKey: "free",
-//   });
-
-//   const options = { multi: true };
-
-//   const [currentPassword, setCurrentPassword] = useState("");
-//   const [newPassword, setNewPassword] = useState("");
-//   const [confirmPassword, setConfirmPassword] = useState("");
-//   const { mutate: changePassword } = useChangePassword();
-//   const [isVisiblePass, setVisiblePass] = useState<boolean>(false);
-//   const [isnewPass, setNewPass] = useState<boolean>(false);
-//   const [iscnfrmNewPass, setcnfrmNewPass] = useState<boolean>(false);
-//   const [isModalOpen, setIsModalOpen] = useState(false);
-
-//   const handleFormSubmit = (e) => {
-//     e.preventDefault();
-//     const body = {
-//       currentPassword,
-//       newPassword,
-//       confirmPassword,
-//     };
-//     changePassword(body as any);
-//   };
-
-//   const handleLogout = () => {
-//     setIsModalOpen(true);
-//   };
-
-//   return (
-//     <>
-//       <div className="flex justify-between py-20">
-//         <div>
-//           <TETabs vertical className="w-[20 %] tab-style hover:text-white">
-//             <TETabsItem
-//               onClick={() => handleVerticalClick("tab1")}
-//               active={verticalActive === "tab1"}
-//             >
-//               <div className="flex bg-[#FF553E] p-4">
-//                 <img src={profile} alt="profile" className="mr-2" />
-//                 <p className="text-[20px] text-white">Profile</p>
-//               </div>
-//             </TETabsItem>
-
-//             <TETabsItem
-//               onClick={() => handleVerticalClick("tab2")}
-//               active={verticalActive === "tab2"}
-//             >
-//               <div className="flex hover:bg-[#FF553E] hover:text-white text-black p-4">
-//                 <img src={paw} alt="profile" className="mr-2" />
-//                 <p className="text-[20px] ">Pet list</p>
-//               </div>
-//             </TETabsItem>
-
-//             <TETabsItem
-//               onClick={() => handleVerticalClick("tab3")}
-//               active={verticalActive === "tab3"}
-//             >
-//               <div className="flex hover:bg-[#FF553E] hover:text-white text-black p-4">
-//                 {/* <img src={setting} alt="profile" className="mr-2" /> */}
-//                 <p className="text-[20px] ">Change Password</p>
-//               </div>
-//             </TETabsItem>
-//           </TETabs>
-
-//           <h6 onClick={handleLogout} className="text-[20px] text-red-600">
-//             Logout
-//           </h6>
-//         </div>
-
-//         <ReactModal
-//           className="w-fit"
-//           overlayClassName="z-10 fixed inset-0 bg-[rgba(0,0,0,0.5)] h-[100dvh] w-[100dvw]"
-//           onAfterOpen={() => {
-//             document.body.style.overflow = "hidden";
-//           }}
-//           isOpen={isModalOpen}
-//           onAfterClose={() => {
-//             document.body.style.overflow = "auto";
-//           }}
-//         >
-//           <Logoutmodal setIsModalOpen={setIsModalOpen} />
-//         </ReactModal>
-
-//         <TETabsContent className="w-[80%]">
-//           <TETabsPane show={verticalActive === "tab1"} className="">
-//             <div className="flex justify-normal bg-white shadow-xl rounded-xl p-6 mb-8">
-//               <div className="w-[20%]">
-//                 <img src={client_image} alt="Client Image" />
-//               </div>
-//               <div className="w-[80%]">
-//                 <div>
-//                   <div className="flex">
-//                     <h1 className="text-[28px] font-semibold">
-//                       Jessica Sympson
-//                     </h1>
-//                     <img src={Mask1} alt="Edit btn" className="ml-5" />
-//                   </div>
-//                   <p className="text-[18px] mt-4">
-//                     - So be careful, Grumpy Lina
-//                   </p>
-//                   <hr className="my-5" />
-//                 </div>
-//                 <div className="w-[50%]">
-//                   <div className="flex justify-between mb-4">
-//                     <p className="text-[#8C8E97] text-[20px]">Phone Number</p>
-//                     <p className="text-[20px]">+44 120 65 564 25</p>
-//                   </div>
-//                   <div className="flex justify-between mb-4">
-//                     <p className="text-[#8C8E97] text-[20px]">City</p>
-//                     <p className="text-[20px]">New York</p>
-//                   </div>
-//                   <div className="flex justify-between mb-4">
-//                     <p className="text-[#8C8E97] text-[20px]">Email</p>
-//                     <p className="text-[20px]">jessica003@gmail.com</p>
-//                   </div>
-//                 </div>
-//               </div>
-//             </div>
-
-//             <div className=" bg-white shadow-xl rounded-xl p-6 mb-8">
-//               <div className="flex mb-4">
-//                 <h6 className="text-[20px] font-semibold">
-//                   Freely about yourself
-//                 </h6>
-//                 <img src={Mask1} alt="Edit btn" className="ml-6" />
-//               </div>
-//               <p className="text-[#707070] text-[20px]">
-//                 Write a few lines about yourself and your character. Tell us
-//                 about your achievements, priorities and life experience. This
-//                 way your profile will become more interesting and attract more
-//                 attention.
-//               </p>
-//             </div>
-
-//             <div className=" bg-white shadow-xl rounded-xl p-6 mb-8">
-//               <div className="flex justify-between">
-//                 <h6 className="text-[20px] font-semibold mb-4">My Pets</h6>
-//                 <h6 className="text-[#FF553E] text-[20px] font-semibold mb-4">
-//                   All Pets
-//                 </h6>
-//               </div>
-//               <div className="flex">
-//                 {data.map((item, index) => (
-//                   <div key={index} className="m-1">
-//                     <img src={item.img} alt="Images" />
-//                   </div>
-//                 ))}
-//                 <UploadButton
-//                   uploader={uploader}
-//                   options={options}
-//                   onComplete={(files) =>
-//                     alert(files.map((x) => x.fileUrl).join("\n"))
-//                   }
-//                 >
-//                   {({ onClick }) => (
-//                     <img src={last} onClick={onClick} className="m-1" alt="" />
-//                   )}
-//                 </UploadButton>
-//               </div>
-//             </div>
-
-//             <div className="flex justify-end w-full">
-//               <button className="bg-white text-black px-14 rounded-lg mr-2 font-bold text-[16px] py-3 shadow-lg">
-//                 Cancle
-//               </button>
-//               <button className="bg-[#FF553E] text-white px-14 rounded-lg py-3 font-bold text-[16px] shadow-lg">
-//                 Save
-//               </button>
-//             </div>
-//           </TETabsPane>
-
-//           <TETabsPane show={verticalActive === "tab2"}>
-//             <div className="grid xl:grid-cols-3 lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-4  justify-center">
-//               {data2.map((item, index) => (
-//                 <div key={index} className="p-4 flex justify-center">
-//                   <div className="relative">
-//                     <img src={item.image} alt="" />
-//                     <div className="p-6 shadow-lg bg-white rounded-b-lg">
-//                       <h1 className="text-[24px] font-semibold">
-//                         {item.title}
-//                       </h1>
-//                       <div className="flex my-2">
-//                         <img
-//                           src={item.img2}
-//                           alt="home"
-//                           className="w-[15px] h-[16px]"
-//                         />
-//                         <p className="text-[16px] text-[#818181] ml-2">
-//                           {item.country}
-//                         </p>
-//                       </div>
-//                       <div className="flex mt-1">
-//                         <h6 className="text-[16px] font-bold">Age:</h6>
-//                         <p className="text-[16px] ml-2">{item.age}</p>
-//                       </div>
-//                       <div className="flex justify-between">
-//                         <div className="flex my-2">
-//                           <h6 className="text-[16px] font-bold">Breed:</h6>
-//                           <p className="text-[16px] ml-2">{item.bread}</p>
-//                         </div>
-//                       </div>
-//                     </div>
-
-//                     <div className="absolute inset-0 bg-[#FA441D] rounded-lg opacity-0 hover:opacity-95 transition-opacity flex items-center justify-center">
-//                       <div className="text-center ">
-//                         <div className="flex justify-center">
-//                           <img src={pawimage} alt="paw image" />
-//                         </div>
-//                         <a href="/detail">
-//                           <h1 className="text-white z-10 text-[20px]">
-//                             View Profile
-//                           </h1>
-//                         </a>
-//                       </div>
-//                     </div>
-//                   </div>
-//                 </div>
-//               ))}
-//             </div>
-//           </TETabsPane>
-
-//           <TETabsPane show={verticalActive === "tab3"}>
-//             <div className="flex-1 flex ">
-//               <div className="md:flex  w-full  ">
-//                 <div className="lg:w-[50%]  w-full pt-10 md:pt-0">
-//                   <h1 className="text-[34px] font-bold mb-4">
-//                     Change Password
-//                   </h1>
-
-//                   <form onSubmit={handleFormSubmit}>
-//                     <div>
-//                       <label className="text-[13px]  w-full text-[#666666] mb-1">
-//                         Old Password
-//                       </label>
-//                       <input
-//                         type={!isVisiblePass ? "password" : "text"}
-//                         name="password"
-//                         className=" outline-none w-full bg-transparent
-//                          mb-4 mt-1 border
-//                           border-black rounded-full text-black px-4 py-3"
-//                       />
-//                       <button
-//                         type="button"
-//                         className="absolute  ml-[-40px] mt-[18px]"
-//                         onClick={() => setVisiblePass(!isVisiblePass)}
-//                       >
-//                         {isVisiblePass ? (
-//                           <IoEyeOutline className="w-[30px] h-[22px]" />
-//                         ) : (
-//                           <IoEyeOffOutline className="w-[30px] h-[22px]" />
-//                         )}
-//                       </button>
-//                     </div>
-//                     <div>
-//                       <label className="text-[13px]  w-full text-[#666666]">
-//                         New Password
-//                       </label>
-//                       <input
-//                         type={!isnewPass ? "password" : "text"}
-//                         name="password"
-//                         className=" outline-none w-full bg-transparent
-//                           border  mb-4 mt-1
-//                           border-black rounded-full text-black px-4 py-3"
-//                       />
-//                       <button
-//                         type="button"
-//                         className="absolute  ml-[-40px] mt-[18px]"
-//                         onClick={() => setNewPass(!isnewPass)}
-//                       >
-//                         {isnewPass ? (
-//                           <IoEyeOutline className="w-[30px] h-[22px]" />
-//                         ) : (
-//                           <IoEyeOffOutline className="w-[30px] h-[22px]" />
-//                         )}
-//                       </button>
-//                     </div>
-//                     <div>
-//                       <label className="text-[13px]  w-full text-[#666666]">
-//                         Confirm Password
-//                       </label>
-//                       <input
-//                         type={!iscnfrmNewPass ? "password" : "text"}
-//                         name="password"
-//                         className=" outline-none w-full bg-transparent
-//                          border  mb-4 mt-1
-//                           border-black rounded-full text-black px-4 py-3"
-//                       />
-//                       <button
-//                         type="button"
-//                         className="absolute ml-[-40px] mt-[18px]"
-//                         onClick={() => setcnfrmNewPass(!iscnfrmNewPass)}
-//                       >
-//                         {iscnfrmNewPass ? (
-//                           <IoEyeOutline className="w-[30px] h-[22px]" />
-//                         ) : (
-//                           <IoEyeOffOutline className="w-[30px] h-[22px]" />
-//                         )}
-//                       </button>
-//                     </div>
-
-//                     <div className="flex justify-end w-full mt-8">
-//                       <button className="bg-white text-black px-14 rounded-lg mr-2 font-bold text-[16px] py-3 shadow-lg">
-//                         Cancle
-//                       </button>
-//                       <button className="bg-[#FF553E] text-white px-10 rounded-lg py-3 font-bold text-[16px] shadow-lg">
-//                         Change Password
-//                       </button>
-//                     </div>
-//                   </form>
-//                 </div>
-//               </div>
-//             </div>
-//           </TETabsPane>
-//         </TETabsContent>
-//       </div>
-//     </>
-//   );
-// };
-
-// export default ProfileSection;
-
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import {
   TETabs,
   TETabsContent,
@@ -433,22 +15,15 @@ import img4 from "./assets/pet4.png";
 import img5 from "./assets/pet5.png";
 import img6 from "./assets/pet6.png";
 import last from "./assets/last.png";
-import { UploadButton } from "react-uploader";
-import { Uploader } from "uploader";
 import paw from "./assets/paw.svg";
-
-import home from "../NearbyPet/assets/Icon.png";
-import hearticon from "../NearbyPet/assets/heart.png";
-import image1 from "../NearbyPet/assets/div.dt-sc-team-thumb.png";
-import image2 from "../NearbyPet/assets/team-thumb2.png";
-import image3 from "../NearbyPet/assets/sitter3.jpg.png";
 import pawimage from "../NearbyPet/assets/footprint-shape_svgrepo.com.png";
-import useChangePassword from "../../http/ChangePassword";
-import { IoEyeOffOutline } from "react-icons/io5";
-import { IoEyeOutline } from "react-icons/io5";
 import ReactModal from "react-modal";
 import UserLogoutModal from "../modals/UserLogoutModal";
 import P from "../ui/P1";
+import logout from "./assets/logout.png";
+import { PET_ENDPOINTS } from "../../utlis/apiRoutes";
+import http from "../../http/http";
+import { useNavigate } from "react-router-dom";
 
 const data = [
   {
@@ -469,50 +44,12 @@ const data = [
   {
     img: img6,
   },
-  {
-    img: last,
-  },
-];
-
-const data2 = [
-  {
-    image: image1,
-    title: "Stephen King",
-    img2: home,
-    country: "Cambridge ,UK",
-    age: "2+ Yrs",
-    bread: "Bulldog",
-    heart: hearticon,
-  },
-  {
-    image: image2,
-    title: "Stephen King",
-    img2: home,
-    country: "Cambridge ,UK",
-    age: "2+ Yrs",
-    bread: "Bulldog",
-    heart: hearticon,
-  },
-  {
-    image: image3,
-    title: "Stephen King",
-    img2: home,
-    country: "Cambridge ,UK",
-    age: "2+ Yrs",
-    bread: "Bulldog",
-    heart: hearticon,
-  },
 ];
 
 const ProfileSection = () => {
+  const [dataa, setDataa] = useState([]);
   const [verticalActive, setVerticalActive] = useState("tab1");
-  const [currentPassword, setCurrentPassword] = useState("");
-  const [newPassword, setNewPassword] = useState("");
-  const [confirmPassword, setConfirmPassword] = useState("");
-  const { mutate: changePassword } = useChangePassword();
-  const [isVisiblePass, setVisiblePass] = useState<boolean>(false);
-  const [isnewPass, setNewPass] = useState<boolean>(false);
-  const [iscnfrmNewPass, setcnfrmNewPass] = useState<boolean>(false);
+
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const handleVerticalClick = (value: string) => {
@@ -520,22 +57,6 @@ const ProfileSection = () => {
       return;
     }
     setVerticalActive(value);
-  };
-
-  const uploader = Uploader({
-    apiKey: "free",
-  });
-
-  const options = { multi: true };
-
-  const handleFormSubmit = (e) => {
-    e.preventDefault();
-    const body = {
-      currentPassword,
-      newPassword,
-      confirmPassword,
-    };
-    changePassword(body as any);
   };
 
   const handleLogout = () => {
@@ -548,6 +69,36 @@ const ProfileSection = () => {
       return;
     }
     setBasicActive(value);
+  };
+
+  const handleClick = async () => {
+    const token = localStorage.getItem("auth_token");
+    console.log("tokenn", token);
+    if (token) {
+      try {
+        const url = PET_ENDPOINTS.petList;
+        const response = await http.get(url, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
+        const responseData = response.data;
+        console.log("data", responseData.data);
+        console.log();
+        setDataa(responseData.data);
+      } catch (err) {
+        console.log(err.message);
+      }
+    }
+  };
+
+  useEffect(() => {
+    handleClick();
+  }, []);
+
+  const navigate = useNavigate();
+  const redirectToAddPet = () => {
+    navigate("/form");
   };
 
   return (
@@ -574,28 +125,23 @@ const ProfileSection = () => {
               >
                 <div className="flex hover:bg-[#FF553E] xl:mt-0 lg:mt-4 rounded-xl hover:text-white text-black xl:p-4 lg:p-2">
                   <img src={paw} alt="profile" className="mr-2" />
-                  <p className="xl:text-[20px] lg:text-[18px] ">Pet list</p>
-                </div>
-              </TETabsItem>
-
-              <TETabsItem
-                onClick={() => handleVerticalClick("tab3")}
-                active={verticalActive === "tab3"}
-              >
-                <div className="flex hover:bg-[#FF553E] xl:mt-0 lg:mt-4 rounded-xl hover:text-white text-black xl:p-4 lg:p-2">
-                  <p className="xl:text-[20px] lg:text-[18px] ">
-                    Change Password
+                  <p
+                    className="xl:text-[20px] lg:text-[18px] "
+                    onClick={handleClick}
+                  >
+                    Pet list
                   </p>
                 </div>
               </TETabsItem>
             </TETabs>
 
-            <div className="flex xl:mt-5 lg:mt-4 ml-4">
-              {/* <img src={logout} alt="Logout icon" /> */}
-              <h6
-                onClick={handleLogout}
-                className="ml-2 xl:text-[20px] lg:text-[18px] text-[#FF0000]"
-              >
+            <div className="flex xl:mt-5 lg:mt-4 ml-4" onClick={handleLogout}>
+              <img
+                src={logout}
+                alt="Logout icon"
+                className="w-[20px] h-[18px] mt-[5px]"
+              />
+              <h6 className="ml-2 xl:text-[20px] lg:text-[18px] text-[#FF0000]">
                 Logout
               </h6>
             </div>
@@ -616,7 +162,11 @@ const ProfileSection = () => {
           </ReactModal>
 
           <TETabsContent className="xl:w-[77%] w-[76%]">
-            <TETabsPane show={verticalActive === "tab1"} className="">
+            <TETabsPane
+              show={verticalActive === "tab1"}
+              className=""
+              id="profile"
+            >
               <div className="flex justify-between bg-white shadow-xl rounded-xl p-6 mb-8">
                 <div className="xl:w-[18%] w-[23%] my-auto">
                   <img src={client_image} alt="Client Image" />
@@ -665,7 +215,7 @@ const ProfileSection = () => {
                         variant={{ weight: "medium" }}
                         className="xl:text-[20px] text-[18px] mb-2"
                       >
-                        +44 120 65 564 25
+                        +44 123456789
                       </P>
                       <P
                         variant={{ weight: "medium" }}
@@ -704,9 +254,6 @@ const ProfileSection = () => {
                   <h6 className="xl:text-[20px] text-[18px] font-semibold mb-4">
                     My Pets
                   </h6>
-                  <h6 className="text-[#FF553E] xl:text-[20px] text-[18px] font-semibold mb-4">
-                    All Pets
-                  </h6>
                 </div>
                 <div className="flex">
                   {data.map((item, index) => (
@@ -714,22 +261,6 @@ const ProfileSection = () => {
                       <img src={item.img} alt="Images" />
                     </div>
                   ))}
-                  {/* <UploadButton
-                    uploader={uploader}
-                    options={options}
-                    onComplete={(files) =>
-                      alert(files.map((x) => x.fileUrl).join("\n"))
-                    }
-                  >
-                    {({ onClick }) => (
-                      <img
-                        src={last}
-                        onClick={onClick}
-                        className="m-1"
-                        alt=""
-                      />
-                    )}
-                  </UploadButton> */}
                 </div>
               </div>
 
@@ -745,32 +276,48 @@ const ProfileSection = () => {
 
             <TETabsPane show={verticalActive === "tab2"} className="">
               <div className="grid xl:grid-cols-3 lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-4  justify-center">
-                {data2.map((item, index) => (
+                <div className="p-4 flex justify-center">
+                  <div className="relative">
+                    <div className="p-6 shadow-lg bg-white rounded-b-lg w-[270px] h-[190px]">
+                      <img
+                        src={last}
+                        alt="add pet"
+                        className="m-auto w-[100px] h-[100px] mt-[10px]"
+                        onClick={redirectToAddPet}
+                      />
+                    </div>
+                  </div>
+                </div>
+
+                {dataa.map((pet, index) => (
                   <div key={index} className="p-4 flex justify-center">
                     <div className="relative">
-                      <img src={item.image} alt="" />
+                      <img src={pet.petProfile} alt="" />
                       <div className="p-6 shadow-lg bg-white rounded-b-lg">
                         <h1 className="text-[24px] font-semibold">
-                          {item.title}
+                          {pet.petName}
                         </h1>
                         <div className="flex my-2">
                           <img
-                            src={item.img2}
-                            alt="home"
+                            src={pet.petProfile}
+                            alt="homedfgg"
                             className="w-[15px] h-[16px]"
                           />
                           <p className="text-[16px] text-[#818181] ml-2">
-                            {item.country}
+                            {pet.address}
+                          </p>
+                          <p className="text-[16px] text-[#818181] ml-2">
+                            {pet.location}
                           </p>
                         </div>
                         <div className="flex mt-1">
                           <h6 className="text-[16px] font-bold">Age:</h6>
-                          <p className="text-[16px] ml-2">{item.age}</p>
+                          <p className="text-[16px] ml-2">{pet.dob}</p>
                         </div>
                         <div className="flex justify-between">
                           <div className="flex my-2">
                             <h6 className="text-[16px] font-bold">Breed:</h6>
-                            <p className="text-[16px] ml-2">{item.bread}</p>
+                            <p className="text-[16px] ml-2">{pet.petBreads}</p>
                           </div>
                         </div>
                       </div>
@@ -790,99 +337,6 @@ const ProfileSection = () => {
                     </div>
                   </div>
                 ))}
-              </div>
-            </TETabsPane>
-
-            <TETabsPane show={verticalActive === "tab3"} className="">
-              <div className="flex-1 flex ">
-                <div className="md:flex  w-full  ">
-                  <div className="lg:w-[50%]  w-full pt-10 md:pt-0">
-                    <h1 className="text-[34px] font-bold mb-4">
-                      Change Password
-                    </h1>
-
-                    <form onSubmit={handleFormSubmit}>
-                      <div>
-                        <label className="text-[13px]  w-full text-[#666666] mb-1">
-                          Old Password
-                        </label>
-                        <input
-                          type={!isVisiblePass ? "password" : "text"}
-                          name="password"
-                          className=" outline-none w-full bg-transparent
-                         mb-4 mt-1 border
-                          border-black rounded-full text-black px-4 py-3"
-                        />
-                        <button
-                          type="button"
-                          className="absolute  ml-[-40px] mt-[18px]"
-                          onClick={() => setVisiblePass(!isVisiblePass)}
-                        >
-                          {isVisiblePass ? (
-                            <IoEyeOutline className="w-[30px] h-[22px]" />
-                          ) : (
-                            <IoEyeOffOutline className="w-[30px] h-[22px]" />
-                          )}
-                        </button>
-                      </div>
-                      <div>
-                        <label className="text-[13px]  w-full text-[#666666]">
-                          New Password
-                        </label>
-                        <input
-                          type={!isnewPass ? "password" : "text"}
-                          name="password"
-                          className=" outline-none w-full bg-transparent
-                          border  mb-4 mt-1
-                          border-black rounded-full text-black px-4 py-3"
-                        />
-                        <button
-                          type="button"
-                          className="absolute  ml-[-40px] mt-[18px]"
-                          onClick={() => setNewPass(!isnewPass)}
-                        >
-                          {isnewPass ? (
-                            <IoEyeOutline className="w-[30px] h-[22px]" />
-                          ) : (
-                            <IoEyeOffOutline className="w-[30px] h-[22px]" />
-                          )}
-                        </button>
-                      </div>
-                      <div>
-                        <label className="text-[13px]  w-full text-[#666666]">
-                          Confirm Password
-                        </label>
-                        <input
-                          type={!iscnfrmNewPass ? "password" : "text"}
-                          name="password"
-                          className=" outline-none w-full bg-transparent
-                         border  mb-4 mt-1
-                          border-black rounded-full text-black px-4 py-3"
-                        />
-                        <button
-                          type="button"
-                          className="absolute ml-[-40px] mt-[18px]"
-                          onClick={() => setcnfrmNewPass(!iscnfrmNewPass)}
-                        >
-                          {iscnfrmNewPass ? (
-                            <IoEyeOutline className="w-[30px] h-[22px]" />
-                          ) : (
-                            <IoEyeOffOutline className="w-[30px] h-[22px]" />
-                          )}
-                        </button>
-                      </div>
-
-                      <div className="flex justify-end w-full mt-8">
-                        <button className="bg-white text-black px-14 rounded-lg mr-2 font-bold text-[16px] py-3 shadow-lg">
-                          Cancle
-                        </button>
-                        <button className="bg-[#FF553E] text-white px-10 rounded-lg py-3 font-bold text-[16px] shadow-lg">
-                          Change Password
-                        </button>
-                      </div>
-                    </form>
-                  </div>
-                </div>
               </div>
             </TETabsPane>
           </TETabsContent>
@@ -924,26 +378,8 @@ const ProfileSection = () => {
                   </p>
                 </div>
               </TETabsItem>
-              <TETabsItem
-                onClick={() => handleBasicClick("tab3")}
-                active={basicActive === "tab3"}
-                className="hover:bg-transparent p-0 border-none mx-2 pt-0 mt-0"
-              >
-                <div className="flex sm:hover:bg-[#FF553E] sm:px-4 sm:py-2 p-0 xl:mt-0 lg:mt-4 rounded-xl sm:hover:text-white text-black xl:p-4 lg:p-2">
-                  <P
-                    className="xl:text-[20px] lg:text-[18px] sm:text-[15px] text-[12px] sm:hover:border-none hover:border-b-2 border-b-[#FF553E]"
-                    variant={undefined}
-                  >
-                    Change Password
-                  </P>
-                </div>
-              </TETabsItem>
+
               <div className="flex xl:mt-5 lg:mt-4 sm:mt-[30px] mt-[22px] sm:ml-4 ml-2">
-                {/* <img
-                  src={logout}
-                  alt="Logout icon"
-                  className="w-[20px] h-[20px]"
-                /> */}
                 <h6
                   onClick={handleLogout}
                   className="sm:ml-2 ml-0 xl:text-[20px] lg:text-[18px] sm:text-[15px] text-[12px] text-[#FF0000] sm:hover:border-none hover:border-b-2 border-b-[#FF553E]"
@@ -1066,22 +502,6 @@ const ProfileSection = () => {
                         <img src={item.img} alt="Images" />
                       </div>
                     ))}
-                    {/* <UploadButton
-                      uploader={uploader}
-                      options={options}
-                      onComplete={(files) =>
-                        alert(files.map((x) => x.fileUrl).join("\n"))
-                      }
-                    >
-                      {({ onClick }) => (
-                        <img
-                          src={last}
-                          onClick={onClick}
-                          className="m-1 w-[72px] h-[78px]"
-                          alt=""
-                        />
-                      )}
-                    </UploadButton> */}
                   </div>
                 </div>
 
@@ -1097,32 +517,37 @@ const ProfileSection = () => {
 
               <TETabsPane show={basicActive === "tab2"}>
                 <div className="grid xl:grid-cols-3 lg:grid-cols-3 md:grid-cols-2 grid-cols-1 gap-4  justify-center">
-                  {data2.map((item, index) => (
+                  {dataa.map((pet, index) => (
                     <div key={index} className="p-4 flex justify-center">
                       <div className="relative">
-                        <img src={item.image} alt="" />
+                        <img src={pet.petProfile} alt="" />
                         <div className="p-6 shadow-lg bg-white rounded-b-lg">
                           <h1 className="text-[24px] font-semibold">
-                            {item.title}
+                            {pet.petName}
                           </h1>
                           <div className="flex my-2">
                             <img
-                              src={item.img2}
+                              src={pet.petProfile}
                               alt="home"
                               className="w-[15px] h-[16px]"
                             />
                             <p className="text-[16px] text-[#818181] ml-2">
-                              {item.country}
+                              {pet.address}
+                            </p>
+                            <p className="text-[16px] text-[#818181] ml-2">
+                              {pet.location}
                             </p>
                           </div>
                           <div className="flex mt-1">
                             <h6 className="text-[16px] font-bold">Age:</h6>
-                            <p className="text-[16px] ml-2">{item.age}</p>
+                            <p className="text-[16px] ml-2">{pet.dob}</p>
                           </div>
                           <div className="flex justify-between">
                             <div className="flex my-2">
                               <h6 className="text-[16px] font-bold">Breed:</h6>
-                              <p className="text-[16px] ml-2">{item.bread}</p>
+                              <p className="text-[16px] ml-2">
+                                {pet.petBreads}
+                              </p>
                             </div>
                           </div>
                         </div>
@@ -1142,106 +567,6 @@ const ProfileSection = () => {
                       </div>
                     </div>
                   ))}
-                </div>
-              </TETabsPane>
-
-              <TETabsPane show={basicActive === "tab3"}>
-                <div className="flex-1 flex ">
-                  <div className="md:flex  w-full  ">
-                    <div className="lg:w-[50%]  w-full pt-10 md:pt-0">
-                      <h1 className="text-[34px] font-bold mb-4">
-                        Change Password
-                      </h1>
-
-                      <form onSubmit={handleFormSubmit}>
-                        {/* <form> */}
-                        <div>
-                          <label className="text-[13px]  w-full text-[#666666] mb-1">
-                            Old Password
-                          </label>
-                          <input
-                            onChange={(e) => setCurrentPassword(e.target.value)}
-                            value={currentPassword}
-                            type={!isVisiblePass ? "password" : "text"}
-                            name="password"
-                            className=" outline-none w-full bg-transparent
-                         mb-4 mt-1 border
-                          border-black rounded-full text-black px-4 py-3"
-                          />
-                          <button
-                            type="button"
-                            className="absolute  ml-[-40px] mt-[18px]"
-                            onClick={() => setVisiblePass(!isVisiblePass)}
-                          >
-                            {isVisiblePass ? (
-                              <IoEyeOutline className="w-[30px] h-[22px]" />
-                            ) : (
-                              <IoEyeOffOutline className="w-[30px] h-[22px]" />
-                            )}
-                          </button>
-                        </div>
-                        <div>
-                          <label className="text-[13px]  w-full text-[#666666]">
-                            New Password
-                          </label>
-                          <input
-                            onChange={(e) => setNewPassword(e.target.value)}
-                            value={newPassword}
-                            type={!isnewPass ? "password" : "text"}
-                            name="password"
-                            className=" outline-none w-full bg-transparent
-                          border  mb-4 mt-1
-                          border-black rounded-full text-black px-4 py-3"
-                          />
-                          <button
-                            type="button"
-                            className="absolute  ml-[-40px] mt-[18px]"
-                            onClick={() => setNewPass(!isnewPass)}
-                          >
-                            {isnewPass ? (
-                              <IoEyeOutline className="w-[30px] h-[22px]" />
-                            ) : (
-                              <IoEyeOffOutline className="w-[30px] h-[22px]" />
-                            )}
-                          </button>
-                        </div>
-                        <div>
-                          <label className="text-[13px]  w-full text-[#666666]">
-                            Confirm Password
-                          </label>
-                          <input
-                            onChange={(e) => setConfirmPassword(e.target.value)}
-                            value={confirmPassword}
-                            type={!iscnfrmNewPass ? "password" : "text"}
-                            name="password"
-                            className=" outline-none w-full bg-transparent
-                         border  mb-4 mt-1
-                          border-black rounded-full text-black px-4 py-3"
-                          />
-                          <button
-                            type="button"
-                            className="absolute ml-[-40px] mt-[18px]"
-                            onClick={() => setcnfrmNewPass(!iscnfrmNewPass)}
-                          >
-                            {iscnfrmNewPass ? (
-                              <IoEyeOutline className="w-[30px] h-[22px]" />
-                            ) : (
-                              <IoEyeOffOutline className="w-[30px] h-[22px]" />
-                            )}
-                          </button>
-                        </div>
-
-                        <div className="flex justify-end w-full mt-8">
-                          <button className="bg-white text-black xl:px-14 px-9 py-2 rounded-lg mr-2 font-bold text-[16px] xl:py-3 shadow-lg">
-                            Cancle
-                          </button>
-                          <button className="bg-[#FF553E] text-white xl:px-10 px-6 rounded-lg xl:py-3 py-2 font-bold xl:text-[16px] text-[14px] shadow-lg">
-                            Change Password
-                          </button>
-                        </div>
-                      </form>
-                    </div>
-                  </div>
                 </div>
               </TETabsPane>
             </TETabsContent>

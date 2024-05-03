@@ -31,7 +31,7 @@ const FooterLogoSection = () => {
       <div className="flex mb-4">
         {/* <img src={address} alt="address" /> */}
         <p className="ml-4 mt-3 text-[#555555] text-[15px] leading-6 font-semibold">
-          new delhi, south tukoganj, INDIA
+          128, south tukoganj, United Kingdom
         </p>
       </div>
     </div>

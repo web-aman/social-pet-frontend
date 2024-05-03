@@ -21,46 +21,49 @@ import UserProfile from "./component/UserProfile/UserProfile";
 import AuthHoc from "./component/AuthHoc/AuthHoc";
 
 function App() {
-	setup();
+  setup();
 
-	const queryClient = new QueryClient();
+  const queryClient = new QueryClient();
 
-	return (
-		<>
-			<div>
-				<QueryClientProvider client={queryClient}>
-					<BrowserRouter>
-						<Routes>
-							{/* AUTH ROUTES */}
-							<Route path="/" element={<Auth />}>
-								<Route index element={<HomePage />} />
-								<Route path="/otp" element={<Otp />}></Route>
-								<Route path="/form" element={<FormSection />}></Route>
-								<Route path="/search" element={<Nearby />}></Route>
-								<Route path="/detail" element={<PetDetail />}></Route>
-								<Route path="/user_profile" element={<UserProfile />}></Route>
-								<Route
-									path="/change_password"
-									element={<ChangePassword />}></Route>
-								<Route
-									path="/passwordchanged"
-									element={<PasswordChangedSuccessPage />}></Route>
-							</Route>
+  return (
+    <>
+      <div>
+        <QueryClientProvider client={queryClient}>
+          <BrowserRouter>
+            <Routes>
+              {/* AUTH ROUTES */}
+              <Route path="/" element={<Auth />}>
+                <Route index element={<HomePage />} />
+                <Route path="/otp" element={<Otp />}></Route>
+                <Route path="/form" element={<FormSection />}></Route>
+                <Route path="/search" element={<Nearby />}></Route>
+                <Route path="/detail" element={<PetDetail />}></Route>
+                <Route path="/userprofile" element={<UserProfile />}></Route>
+                <Route
+                  path="/change_password"
+                  element={<ChangePassword />}
+                ></Route>
+                <Route
+                  path="/passwordchanged"
+                  element={<PasswordChangedSuccessPage />}
+                ></Route>
+              </Route>
 
-							<Route path="/about" element={<AboutUs />}></Route>
-							<Route path="/contact" element={<Contact />}></Route>
-							<Route path="/signup" element={<SignUpForm />} />
-							<Route path="/login" element={<Login />}></Route>
-							<Route
-								path="/forgetpassword"
-								element={<ForgetPassword />}></Route>
-							<Route path="/resetpassword" element={<ResetPassword />}></Route>
-						</Routes>
-					</BrowserRouter>
-				</QueryClientProvider>
-			</div>
-		</>
-	);
+              <Route path="/about" element={<AboutUs />}></Route>
+              <Route path="/contact" element={<Contact />}></Route>
+              <Route path="/signup" element={<SignUpForm />} />
+              <Route path="/login" element={<Login />}></Route>
+              <Route
+                path="/forgetpassword"
+                element={<ForgetPassword />}
+              ></Route>
+              <Route path="/resetpassword" element={<ResetPassword />}></Route>
+            </Routes>
+          </BrowserRouter>
+        </QueryClientProvider>
+      </div>
+    </>
+  );
 }
 
 export default App;

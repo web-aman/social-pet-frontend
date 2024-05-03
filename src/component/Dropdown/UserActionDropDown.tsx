@@ -1,4 +1,4 @@
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 import {
   TEDropdown,
   TEDropdownToggle,
@@ -8,7 +8,9 @@ import {
 } from "tw-elements-react";
 import "tw-elements-react/dist/css/tw-elements-react.min.css";
 import { useAppSelector } from "../../store/typedReduxHooks";
-import Button from "../ui/Button";
+import { useState } from "react";
+import ReactModal from "react-modal";
+import Logoutmodal from "../modals/Logoutmodal";
 
 const makeFirstCharacterUpperCase = (str: string) => {
   const splittedStr = str.split("");
@@ -17,6 +19,12 @@ const makeFirstCharacterUpperCase = (str: string) => {
 
 const UserActionDropDown = () => {
   const user = useAppSelector((user) => user.user.user);
+
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const handleLogout = () => {
+    setIsModalOpen(true);
+  };
 
   return (
     <div>
@@ -45,7 +53,7 @@ const UserActionDropDown = () => {
         <TEDropdownMenu>
           <TEDropdownItem>
             <Link
-              to="/user_profile"
+              to="/userprofile"
               className="block text-black  w-full min-w-[160px] cursor-pointer whitespace-nowrap bg-transparent px-4 py-2 text-sm text-left font-normal pointer-events-auto  hover:bg-neutral-100  active:bg-neutral-100 focus:bg-neutral-100 focus:text-neutral-800 focus:outline-none active:no-underline dark:text-neutral-500 dark:hover:bg-neutral-200 dark:focus:bg-neutral-600 dark:active:bg-neutral-600"
             >
               User Profile
@@ -62,13 +70,48 @@ const UserActionDropDown = () => {
           <TEDropdownItem>
             <Link
               to={"/change_password"}
-              className="block  text-black w-full min-w-[160px] cursor-pointer whitespace-nowrap bg-transparent px-4 py-2 text-sm text-left font-normal pointer-events-auto  hover:bg-neutral-100 active:text-neutral-800 active:bg-neutral-100 focus:bg-neutral-100 focus:text-neutral-800 focus:outline-none active:no-underline dark:text-neutral-500 dark:hover:bg-neutral-200 dark:focus:bg-neutral-600 dark:active:bg-neutral-600"
+              className="block text-black w-full min-w-[160px] cursor-pointer whitespace-nowrap bg-transparent px-4 py-2 text-sm text-left font-normal pointer-events-auto  hover:bg-neutral-100 active:text-neutral-800 active:bg-neutral-100 focus:bg-neutral-100 focus:text-neutral-800 focus:outline-none active:no-underline dark:text-neutral-500 dark:hover:bg-neutral-200 dark:focus:bg-neutral-600 dark:active:bg-neutral-600"
             >
               Change Password
             </Link>
           </TEDropdownItem>
+
+          <TEDropdownItem>
+            <Link
+              className="md:block hidden text-black w-full min-w-[160px] cursor-pointer whitespace-nowrap bg-transparent px-4 py-2 text-sm text-left font-normal pointer-events-auto  hover:bg-neutral-100 active:text-neutral-800 active:bg-neutral-100 focus:bg-neutral-100 focus:text-neutral-800 focus:outline-none active:no-underline dark:text-neutral-500 dark:hover:bg-neutral-200 dark:focus:bg-neutral-600 dark:active:bg-neutral-600"
+              onClick={handleLogout}
+              // to="/"
+              to=""
+            >
+              Logout
+            </Link>
+          </TEDropdownItem>
+
+          <TEDropdownItem>
+            <Link
+              className="md:hidden block text-black w-full min-w-[160px] cursor-pointer whitespace-nowrap bg-transparent px-4 py-2 text-sm text-left font-normal pointer-events-auto  hover:bg-neutral-100 active:text-neutral-800 active:bg-neutral-100 focus:bg-neutral-100 focus:text-neutral-800 focus:outline-none active:no-underline dark:text-neutral-500 dark:hover:bg-neutral-200 dark:focus:bg-neutral-600 dark:active:bg-neutral-600"
+              // onClick={handleLogout}
+              to="/login"
+            >
+              Logout
+            </Link>
+          </TEDropdownItem>
         </TEDropdownMenu>
       </TEDropdown>
+
+      <ReactModal
+        className="w-fit z-40 "
+        overlayClassName="z-10 fixed inset-0 bg-[rgba(0,0,0,0.5)] h-[100dvh] w-[100dvw]"
+        onAfterOpen={() => {
+          document.body.style.overflow = "hidden";
+        }}
+        isOpen={isModalOpen}
+        onAfterClose={() => {
+          document.body.style.overflow = "auto";
+        }}
+      >
+        <Logoutmodal setIsModalOpen={setIsModalOpen} />
+      </ReactModal>
     </div>
   );
 };
